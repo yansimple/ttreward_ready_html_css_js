@@ -240,3 +240,61 @@
         display:none!important;
     }
 }
+
+
+/* =========================================================
+   FINAL FIX: VIDEO SOUND + 9:16 AUTOPLAY WITHOUT CONTROLS
+========================================================= */
+
+#video .video-frame,
+#final .video-frame.final{
+    position:relative!important;
+    aspect-ratio:9/16!important;
+    width:min(390px, calc(100vw - 36px))!important;
+    height:auto!important;
+    min-height:0!important;
+    max-height:78dvh!important;
+    margin:18px auto!important;
+    overflow:hidden!important;
+    border-radius:18px!important;
+    background:#000!important;
+}
+
+#video .video-frame video,
+#final .video-frame.final video{
+    width:100%!important;
+    height:100%!important;
+    aspect-ratio:9/16!important;
+    object-fit:cover!important;
+    display:block!important;
+    pointer-events:none!important;
+}
+
+#final .video-frame.final{
+    border:2px solid #ff315f!important;
+    max-height:80dvh!important;
+}
+
+#final .final-video-play{
+    display:none!important;
+}
+
+@media(max-width:600px){
+    #video .video-frame,
+    #final .video-frame.final{
+        width:min(330px, calc(100vw - 36px))!important;
+        max-height:68dvh!important;
+    }
+}
+
+@media(max-height:700px){
+    #video .video-frame{
+        width:min(260px, calc(100vw - 36px))!important;
+        max-height:48dvh!important;
+    }
+
+    #final .video-frame.final{
+        width:min(260px, calc(100vw - 36px))!important;
+        max-height:58dvh!important;
+    }
+}

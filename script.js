@@ -143,7 +143,8 @@ function loadVideo() {
     $("#lockSub").textContent = "Wait until the video finishes";
     try {
       v.currentTime = 0;
-      v.muted = true;
+      v.muted = false;
+      v.volume = 1;
       await v.play();
       $("#playIcon").style.opacity = "0";
       $("#lockText").style.opacity = "0";
@@ -424,27 +425,39 @@ function setupFinal() {
   startFinalStats();
 
   const video = document.getElementById("finalVideo");
-  const playBtn = document.getElementById("finalPlayBtn");
 
-  if (video) {
-    video.controls = false;
+  if (!video) return;
+
+  video.controls = false;
+  video.muted = false;
+  video.volume = 1;
+  video.playsInline = true;
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+  video.setAttribute("disablepictureinpicture", "");
+  video.removeAttribute("controls");
+
+  const playFinalVideo = function () {
     video.muted = false;
     video.volume = 1;
-  }
+    video.play().catch(function () {});
+  };
 
-  if (playBtn && video) {
-    playBtn.onclick = function () {
-      video.muted = false;
-      video.volume = 1;
-      video
-        .play()
-        .then(function () {
-          playBtn.classList.add("hide");
-        })
-        .catch(function () {});
-    };
-  }
+  video.onpause = function () {
+    if (window.currentPage === "final" && !video.ended) {
+      playFinalVideo();
+    }
+  };
+
+  video.onclick = function (event) {
+    event.preventDefault();
+    playFinalVideo();
+  };
+
+  video.currentTime = 0;
+  playFinalVideo();
 }
+
 renderChoices();
 syncName();
 route();
