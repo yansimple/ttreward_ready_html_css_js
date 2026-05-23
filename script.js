@@ -5,9 +5,10 @@ let balance = 0;
 let videoIndex = 0;
 let videoUnlocked = false;
 let spinCount = 0;
+let reviewVideoIndex = 0;
 
-const videoFiles = ["1.mp4", "2.mp4"];
-const rewards = [89, 89.4];
+const videoFiles = ["1.mp4", "2.mp4", "3.mp4", "4.mp4"];
+const rewards = [44.6, 44.6, 44.6, 44.6];
 
 const reactions = [
     ["🔥", "VIRAL"],
@@ -107,7 +108,7 @@ function renderProgress(){
 
     progress.innerHTML = "";
 
-    for(let i = 0; i < 2; i++){
+    for(let i = 0; i < videoFiles.length; i++){
         const segment = document.createElement("span");
 
         segment.className = "seg" + (i <= videoIndex ? " on" : "");
@@ -145,7 +146,9 @@ function loadVideo(){
 
     renderProgress();
 
-    $("#videoCounter").textContent = videoIndex + 1 + "/2";
+    $("#videoCounter").textContent =
+        videoIndex + 1 + "/" + videoFiles.length;
+
     $("#rewardTop").textContent = Math.round(rewards[videoIndex]);
     $("#bal").textContent = balance.toFixed(2);
 
@@ -259,7 +262,9 @@ function chooseReaction(button){
     $("#modalCash").textContent = reward.toFixed(2);
 
     $("#nextVideo").textContent =
-        videoIndex < 1 ? "1 more video to evaluate →" : "Open bonus wheel →";
+        videoIndex < videoFiles.length - 1
+            ? (videoFiles.length - videoIndex - 1) + " more video to evaluate →"
+            : "Open bonus wheel →";
 
     $("#rewardModal").classList.add("show");
 }
@@ -267,7 +272,7 @@ function chooseReaction(button){
 $("#nextVideo").onclick = () => {
     $("#rewardModal").classList.remove("show");
 
-    if(videoIndex < 1){
+    if(videoIndex < videoFiles.length - 1){
         videoIndex++;
 
         loadVideo();
@@ -613,6 +618,7 @@ function updateWithdrawToastsForPage(id){
 function setupFinal(){
     fillLists();
     startFinalStats();
+    setupReviewVideoCarousel();
 
     let video = document.getElementById("finalVideo");
 
@@ -631,6 +637,7 @@ function setupFinal(){
                     playsinline
                     webkit-playsinline
                     preload="auto"
+                    autoplay
                 ></video>
             `;
 
@@ -670,6 +677,87 @@ function setupFinal(){
             playFinalVideo();
         }
     });
+}
+
+function setupReviewVideoCarousel(){
+    const cards = Array.from(document.querySelectorAll(".review-video-card"));
+
+    if(!cards.length){
+        return;
+    }
+
+    const prevBtn = document.querySelector(".review-video-nav.prev");
+    const nextBtn = document.querySelector(".review-video-nav.next");
+
+    function stopAllVideos(){
+        cards.forEach((card) => {
+            const video = card.querySelector("video");
+            const play = card.querySelector(".review-video-play");
+
+            if(video){
+                video.pause();
+                video.currentTime = 0;
+                video.muted = false;
+                video.volume = 1;
+            }
+
+            if(play){
+                play.classList.remove("hide");
+            }
+        });
+    }
+
+    function showCard(index){
+        reviewVideoIndex =
+            (index + cards.length) % cards.length;
+
+        stopAllVideos();
+
+        cards.forEach((card, cardIndex) => {
+            card.classList.toggle("active", cardIndex === reviewVideoIndex);
+        });
+    }
+
+    cards.forEach((card) => {
+        const video = card.querySelector("video");
+        const play = card.querySelector(".review-video-play");
+
+        if(video){
+            video.controls = false;
+            video.muted = false;
+            video.volume = 1;
+            video.playsInline = true;
+            video.setAttribute("playsinline", "");
+            video.setAttribute("webkit-playsinline", "");
+        }
+
+        if(play && video){
+            play.onclick = () => {
+                stopAllVideos();
+
+                card.classList.add("active");
+                play.classList.add("hide");
+
+                video.muted = false;
+                video.volume = 1;
+                video.play().catch(() => {});
+            };
+        }
+    });
+
+    if(prevBtn){
+        prevBtn.onclick = () => {
+            showCard(reviewVideoIndex - 1);
+        };
+    }
+
+    if(nextBtn){
+        nextBtn.onclick = () => {
+            showCard(reviewVideoIndex + 1);
+        };
+    }
+
+    showCard(reviewVideoIndex);
 }
 
 renderChoices();
