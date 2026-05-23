@@ -1,24 +1,602 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>TikTok Rewards</title>
-
-<link rel="stylesheet" href="./style.css">
-</head>
-<body>
-<div class="top"><span class="dot"></span><b id="online">5 182</b>&nbsp; members online now</div>
-<main id="home" class="page active"><div class="center"><section class="card"><div class="brand"><div class="logo">♪</div><span>TikTok Rewards</span></div><h1 class="title">Welcome! What's your <span class="pink">first name</span>?</h1><p class="subtitle">Enter your name to verify your exclusive access</p><input id="name" class="name-input" placeholder="Your first name..." autocomplete="given-name"><button id="continue" class="btn" disabled>CONTINUE ❯</button><div class="safe">♢ Secure session • Verified access</div></section></div></main>
-<main id="selected" class="page"><section class="selected"><div class="avatar" id="initial">N</div><h1 class="big-title"><span id="who">Name</span>, You've Been<br><span class="pink">Selected</span></h1><p class="selected-sub">Exclusive members are already securing their benefits. Claim your spot before it's gone.</p><div class="verify"><h3>♢ PROFILE VERIFICATION</h3><div class="bar"></div><div class="check"><span>✓</span><div>Analyzing <b id="who2">Name</b>'s profile...</div></div><div class="check"><span>✓</span><div>Confirming eligibility...</div></div><div class="check"><span>✓</span><div>Reserving your spot...</div></div><div class="check"><span>✓</span><div>Access Granted ✔</div></div></div><button id="verifyContinue" class="btn verify-force-active" type="button" onclick="go('video')">CONTINUE ❯</button><div class="stats" style="margin-top:8px"><span>♙ 5 302 online</span><span class="scarce">◷ Only 2 spots left</span></div></section></main>
-<main id="video" class="page"><div class="app"><header class="app-head"><div class="app-brand"><div class="app-logo">♪</div><div><b>TikTok</b><div class="sub">REWARDS PROGRAM</div></div></div><div style="display:flex;gap:7px;align-items:center"><div class="pill"><span class="coin">T</span> $<span id="bal">0.00</span></div><div class="user" id="userBadge">U</div></div></header><div class="mission"><div> <b>Daily mission</b><br><small>Rate video <span id="videoCounter">1/2</span> to earn coins</small></div><button class="earn">T +<span id="rewardTop">89</span></button></div><div class="progress" id="progress"></div><div class="video-frame"><video id="rewardVideo" playsinline webkit-playsinline preload="auto"></video><div id="watchLock" class="watch-lock"><div style="pointer-events:none"><div id="playIcon" class="play-circle">▶</div><div id="lockText" style="font-size:clamp(17px,4vw,25px);font-weight:900">Tap to play video</div><small id="lockSub" style="font-size:clamp(12px,3vw,16px)">Reactions unlock after the video ends</small></div></div><div id="videoLine" class="video-line"></div><div class="caption">@creator_01<br><small>Watch till the end <br>#fyp #foryou #viral</small></div><div class="actions"><div class="act">⚫</div><div class="act">❤</div>48.5K<div class="act">💬</div>4.9K<div class="act">🔖</div>1.6K<div class="act">↗</div>1.6K</div></div><section class="section"><div class="section-title"><span>Tap a reaction to earn coins <span class="coin">T</span></span><small id="readyText" class="muted">Locked</small></div><div class="grid" id="choices"></div><div class="telegram">Join our rewards channel: <!-- TELEGRAM CHANNEL LINK --><a href="https://t.me/+OyaVti9byi8xZTU0" target="_blank">Open Telegram</a></div></section></div></main>
-<main id="spin" class="page"><div class="app"><header class="app-head"><div class="app-brand"><div class="app-logo">♪</div><div><b>TikTok</b><div class="sub">REWARDS PROGRAM</div></div></div><div class="pill"><span class="coin">T</span> $<span id="spinHeadBal">178.40</span></div></header><section class="spin-wrap"><div class="mission" style="margin:0 0 8px"><div> <b>Bonus multiplier</b><br><small>Spin to multiply your earnings!</small></div><button class="earn">T x2</button></div><div class="balance-card"><p class="muted">Your current balance</p><div class="amount"><span class="coin">T</span> $<span id="spinBal">178.40</span></div></div><div class="bonus-line">● <span class="muted">2 650 online</span> &nbsp; Bonus spin available!</div><div id="spinNote" class="spin-note hidden">× Only 1.2x... So close!<br><span class="muted">But don't worry, you have one bonus spin.</span></div><div id="spinSuccess" class="spin-success hidden"> 2x MULTIPLIER! Your earnings doubled!<br><div class="modal-sum" id="successAmount">$356.80</div><span class="muted">Continue to claim your reward</span></div><div class="wheel-box"><div class="pointer"></div><div id="wheel" class="wheel"><span class="wheel-label">1.2x</span><span class="wheel-label">2x</span><span class="wheel-label">1.5x</span><span class="wheel-label">2x</span><span class="wheel-label">1.2x</span><span class="wheel-label">2x</span><span class="wheel-label">1.5x</span><span class="wheel-label">2x</span></div></div><button id="spinBtn" class="btn"> SPIN TO MULTIPLY</button></section></div></main>
-<main id="final" class="page"><div class="app scroll wide"><header class="app-head"><div class="app-brand"><div class="app-logo">♪</div><div><b>TikTok</b><div class="sub">REWARDS PROGRAM</div></div></div><div class="pill"><span class="coin">T</span> $356.80</div></header><div class="final-top"><h3>To make your withdrawal</h3><p>Watch the video testimonial below and press the button.</p></div><div class="video-frame final">
-    <video id="finalVideo" src="546.mp4" playsinline webkit-playsinline></video>
-    <button id="finalPlayBtn" class="final-video-play" type="button">▶</button>
-</div><div class="final-reward"><span class="coin">T</span> <b>+$356.80</b><p class="muted">Your reward is ready for withdrawal.</p></div><!-- FINAL WITHDRAW LINK --><a class="btn withdraw-btn" href="https://t.me/+OyaVti9byi8xZTU0">WITHDRAW</a><div class="review-wrap"><div class="tabs"><button class="tab active" data-tab="finalRank">🏆 Ranking</button><button class="tab" data-tab="finalWithdraw">💳 Withdrawals</button><button class="tab" data-tab="finalReviews">⭐ Reviews</button></div><section id="finalRank" class="panel active"><div class="live-heading"><span>📈 Live Ranking - January 2025</span><span class="cyan" style="font-size:14px">● LIVE</span></div><div id="finalRankList"></div><div class="green-card">💸 $19 921 withdrawn in the last 24h •</div><div class="proof-title">📸 Recent Payment Proofs</div><div class="proofs"><div class="proof"><div class="proof-head"><div class="payicon">💳</div><div><b>PayPal</b><br><span class="muted">Jan 15, 2025</span></div></div><div class="receipt"><span class="muted">To: Jessica M.</span><div class="sum">$1,240.00</div><b style="color:#16a34a">• Completed</b></div></div><div class="proof"><div class="proof-head"><div class="payicon cash">💵</div><div><b>CashApp</b><br><span class="muted">Jan 14, 2025</span></div></div><div class="receipt"><span class="muted">To: Brandon K.</span><div class="sum">$890.50</div><b style="color:#16a34a">• Completed</b></div></div></div></section><section id="finalWithdraw" class="panel"><div class="live-heading"><span>💳 Recent Withdrawals</span><span class="cyan" style="font-size:14px">● LIVE</span></div><div id="finalWithdrawList"></div><div class="green-card">💸 $20 060 withdrawn in the last 24h •</div></section><section id="finalReviews" class="panel"><div class="live-heading"><span>⭐ User Reviews</span><span class="cyan" style="font-size:14px">● LIVE</span></div><div id="finalReviewList"></div><div class="green-card">💸 $20 060 withdrawn in the last 24h •</div><div class="faq"><details><summary>Is this program real?</summary><p class="muted">Yes, eligible users can complete video evaluations and claim rewards.</p></details><details><summary>How long does withdrawal take?</summary><p class="muted">Processing depends on the selected payment method.</p></details><details><summary>What methods are accepted?</summary><p class="muted">PayPal, CashApp, Zelle and bank transfer.</p></details></div></section></div></div></main>
-<div id="rewardModal" class="modal"><div class="modal-card"><div class="modal-icon">🎉</div><h2 class="modal-title">Coins earned! </h2><p class="muted">You received:</p><div class="modal-sum"><span class="coin">T</span> +<span id="modalReward">89</span></div><p class="muted">$<span id="modalCash">89.00</span> added to your balance</p><button id="nextVideo" class="btn">Next video →</button></div></div>
-<div id="withdrawToast" class="withdraw-toast" aria-live="polite"></div>
-<script src="./script.js"></script>
-</body>
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"/>
+  <title>
+   TikTok Rewards
+  </title>
+  <link href="./style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="top">
+   <span class="dot">
+   </span>
+   <b id="online">
+    5 182
+   </b>
+   &nbsp; members online now
+  </div>
+  <main class="page active" id="home">
+   <div class="center">
+    <section class="card">
+     <div class="brand">
+      <div class="logo">
+       &sung;
+      </div>
+      <span>
+       TikTok Rewards
+      </span>
+     </div>
+     <h1 class="title">
+      Welcome! What's your
+      <span class="pink">
+       first name
+      </span>
+      ?
+     </h1>
+     <p class="subtitle">
+      Enter your name to verify your exclusive access
+     </p>
+     <input autocomplete="given-name" class="name-input" id="name" placeholder="Your first name..."/>
+     <button class="btn" disabled="" id="continue">
+      CONTINUE ❯
+     </button>
+     <div class="safe">
+      ♢ Secure session &bull; Verified access
+     </div>
+    </section>
+   </div>
+  </main>
+  <main class="page" id="selected">
+   <section class="selected">
+    <div class="avatar" id="initial">
+     N
+    </div>
+    <h1 class="big-title">
+     <span id="who">
+      Name
+     </span>
+     , You've Been
+     <br/>
+     <span class="pink">
+      Selected
+     </span>
+    </h1>
+    <p class="selected-sub">
+     Exclusive members are already securing their benefits. Claim your spot before it's gone.
+    </p>
+    <div class="verify">
+     <h3>
+      ♢ PROFILE VERIFICATION
+     </h3>
+     <div class="bar">
+     </div>
+     <div class="check">
+      <span>
+       &checkmark;
+      </span>
+      <div>
+       Analyzing
+       <b id="who2">
+        Name
+       </b>
+       's profile...
+      </div>
+     </div>
+     <div class="check">
+      <span>
+       &checkmark;
+      </span>
+      <div>
+       Confirming eligibility...
+      </div>
+     </div>
+     <div class="check">
+      <span>
+       &checkmark;
+      </span>
+      <div>
+       Reserving your spot...
+      </div>
+     </div>
+     <div class="check">
+      <span>
+       &checkmark;
+      </span>
+      <div>
+       Access Granted ✔
+      </div>
+     </div>
+    </div>
+    <button class="btn verify-force-active" id="verifyContinue" onclick="go('video')" type="button">
+     CONTINUE ❯
+    </button>
+    <div class="stats" style="margin-top:8px">
+     <span>
+      ♙ 5 302 online
+     </span>
+     <span class="scarce">
+      ◷ Only 2 spots left
+     </span>
+    </div>
+   </section>
+  </main>
+  <main class="page" id="video">
+   <div class="app">
+    <header class="app-head">
+     <div class="app-brand">
+      <div class="app-logo">
+       &sung;
+      </div>
+      <div>
+       <b>
+        TikTok
+       </b>
+       <div class="sub">
+        REWARDS PROGRAM
+       </div>
+      </div>
+     </div>
+     <div style="display:flex;gap:7px;align-items:center">
+      <div class="pill">
+       <span class="coin">
+        T
+       </span>
+       $
+       <span id="bal">
+        0.00
+       </span>
+      </div>
+      <div class="user" id="userBadge">
+       U
+      </div>
+     </div>
+    </header>
+    <div class="mission">
+     <div>
+      <b>
+       Daily mission
+      </b>
+      <br/>
+      <small>
+       Rate video
+       <span id="videoCounter">
+        1/2
+       </span>
+       to earn coins
+      </small>
+     </div>
+     <button class="earn">
+      T +
+      <span id="rewardTop">
+       89
+      </span>
+     </button>
+    </div>
+    <div class="progress" id="progress">
+    </div>
+    <div class="video-frame">
+     <video id="rewardVideo" playsinline="" preload="auto" webkit-playsinline="">
+     </video>
+     <div class="watch-lock" id="watchLock">
+      <div style="pointer-events:none">
+       <div class="play-circle" id="playIcon">
+        ▶
+       </div>
+       <div id="lockText" style="font-size:clamp(17px,4vw,25px);font-weight:900">
+        Tap to play video
+       </div>
+       <small id="lockSub" style="font-size:clamp(12px,3vw,16px)">
+        Reactions unlock after the video ends
+       </small>
+      </div>
+     </div>
+     <div class="video-line" id="videoLine">
+     </div>
+     <div class="caption">
+      @creator_01
+      <br/>
+      <small>
+       Watch till the end
+       <br/>
+       #fyp #foryou #viral
+      </small>
+     </div>
+     <div class="actions">
+      <div class="act">
+       ⚫
+      </div>
+      <div class="act">
+       ❤
+      </div>
+      48.5K
+      <div class="act">
+       💬
+      </div>
+      4.9K
+      <div class="act">
+       🔖
+      </div>
+      1.6K
+      <div class="act">
+       &nearrow;
+      </div>
+      1.6K
+     </div>
+    </div>
+    <section class="section">
+     <div class="section-title">
+      <span>
+       Tap a reaction to earn coins
+       <span class="coin">
+        T
+       </span>
+      </span>
+      <small class="muted" id="readyText">
+       Locked
+      </small>
+     </div>
+     <div class="grid" id="choices">
+     </div>
+     <div class="telegram">
+      Join our rewards channel:
+      <!-- TELEGRAM CHANNEL LINK -->
+      <a href="https://t.me/+OyaVti9byi8xZTU0" target="_blank">
+       Open Telegram
+      </a>
+     </div>
+    </section>
+   </div>
+  </main>
+  <main class="page" id="spin">
+   <div class="app">
+    <header class="app-head">
+     <div class="app-brand">
+      <div class="app-logo">
+       &sung;
+      </div>
+      <div>
+       <b>
+        TikTok
+       </b>
+       <div class="sub">
+        REWARDS PROGRAM
+       </div>
+      </div>
+     </div>
+     <div class="pill">
+      <span class="coin">
+       T
+      </span>
+      $
+      <span id="spinHeadBal">
+       178.40
+      </span>
+     </div>
+    </header>
+    <section class="spin-wrap">
+     <div class="mission" style="margin:0 0 8px">
+      <div>
+       <b>
+        Bonus multiplier
+       </b>
+       <br/>
+       <small>
+        Spin to multiply your earnings!
+       </small>
+      </div>
+      <button class="earn">
+       T x2
+      </button>
+     </div>
+     <div class="balance-card">
+      <p class="muted">
+       Your current balance
+      </p>
+      <div class="amount">
+       <span class="coin">
+        T
+       </span>
+       $
+       <span id="spinBal">
+        178.40
+       </span>
+      </div>
+     </div>
+     <div class="bonus-line">
+      ●
+      <span class="muted">
+       2 650 online
+      </span>
+      &nbsp; Bonus spin available!
+     </div>
+     <div class="spin-note hidden" id="spinNote">
+      &times; Only 1.2x... So close!
+      <br/>
+      <span class="muted">
+       But don't worry, you have one bonus spin.
+      </span>
+     </div>
+     <div class="spin-success hidden" id="spinSuccess">
+      2x MULTIPLIER! Your earnings doubled!
+      <br/>
+      <div class="modal-sum" id="successAmount">
+       $356.80
+      </div>
+      <span class="muted">
+       Continue to claim your reward
+      </span>
+     </div>
+     <div class="wheel-box">
+      <div class="pointer">
+      </div>
+      <div class="wheel" id="wheel">
+       <span class="wheel-label">
+        1.2x
+       </span>
+       <span class="wheel-label">
+        2x
+       </span>
+       <span class="wheel-label">
+        1.5x
+       </span>
+       <span class="wheel-label">
+        2x
+       </span>
+       <span class="wheel-label">
+        1.2x
+       </span>
+       <span class="wheel-label">
+        2x
+       </span>
+       <span class="wheel-label">
+        1.5x
+       </span>
+       <span class="wheel-label">
+        2x
+       </span>
+      </div>
+     </div>
+     <button class="btn" id="spinBtn">
+      SPIN TO MULTIPLY
+     </button>
+    </section>
+   </div>
+  </main>
+  <main class="page" id="final">
+   <div class="app scroll wide">
+    <header class="app-head">
+     <div class="app-brand">
+      <div class="app-logo">
+       &sung;
+      </div>
+      <div>
+       <b>
+        TikTok
+       </b>
+       <div class="sub">
+        REWARDS PROGRAM
+       </div>
+      </div>
+     </div>
+     <div class="pill">
+      <span class="coin">
+       T
+      </span>
+      $356.80
+     </div>
+    </header>
+    <div class="final-top">
+     <h3>
+      To make your withdrawal
+     </h3>
+     <p>
+      Watch the video testimonial below and press the button.
+     </p>
+    </div>
+    <div class="video-frame final">
+     <video id="finalVideo" playsinline="" src="546.mp4" webkit-playsinline="">
+     </video>
+     <button class="final-video-play" id="finalPlayBtn" type="button">
+      ▶
+     </button>
+    </div>
+    <div class="final-reward">
+     <span class="coin">
+      T
+     </span>
+     <b>
+      +$356.80
+     </b>
+     <p class="muted">
+      Your reward is ready for withdrawal.
+     </p>
+    </div>
+    <!-- FINAL WITHDRAW LINK -->
+    <a class="btn withdraw-btn" href="https://t.me/+OyaVti9byi8xZTU0">
+     WITHDRAW
+    </a>
+    <div class="review-wrap">
+     <div class="tabs">
+      <button class="tab active" data-tab="finalRank">
+       🏆 Ranking
+      </button>
+      <button class="tab" data-tab="finalWithdraw">
+       💳 Withdrawals
+      </button>
+      <button class="tab" data-tab="finalReviews">
+       ⭐ Reviews
+      </button>
+     </div>
+     <section class="panel active" id="finalRank">
+      <div class="live-heading">
+       <span>
+        📈 Live Ranking - January 2025
+       </span>
+       <span class="cyan" style="font-size:14px">
+        ● LIVE
+       </span>
+      </div>
+      <div id="finalRankList">
+      </div>
+      <div class="green-card">
+       💸 $19 921 withdrawn in the last 24h &bull;
+      </div>
+      <div class="proof-title">
+       📸 Recent Payment Proofs
+      </div>
+      <div class="proofs">
+       <div class="proof">
+        <div class="proof-head">
+         <div class="payicon">
+          💳
+         </div>
+         <div>
+          <b>
+           PayPal
+          </b>
+          <br/>
+          <span class="muted">
+           Jan 15, 2025
+          </span>
+         </div>
+        </div>
+        <div class="receipt">
+         <span class="muted">
+          To: Jessica M.
+         </span>
+         <div class="sum">
+          $1,240.00
+         </div>
+         <b style="color:#16a34a">
+          &bull; Completed
+         </b>
+        </div>
+       </div>
+       <div class="proof">
+        <div class="proof-head">
+         <div class="payicon cash">
+          💵
+         </div>
+         <div>
+          <b>
+           CashApp
+          </b>
+          <br/>
+          <span class="muted">
+           Jan 14, 2025
+          </span>
+         </div>
+        </div>
+        <div class="receipt">
+         <span class="muted">
+          To: Brandon K.
+         </span>
+         <div class="sum">
+          $890.50
+         </div>
+         <b style="color:#16a34a">
+          &bull; Completed
+         </b>
+        </div>
+       </div>
+      </div>
+     </section>
+     <section class="panel" id="finalWithdraw">
+      <div class="live-heading">
+       <span>
+        💳 Recent Withdrawals
+       </span>
+       <span class="cyan" style="font-size:14px">
+        ● LIVE
+       </span>
+      </div>
+      <div id="finalWithdrawList">
+      </div>
+      <div class="green-card">
+       💸 $20 060 withdrawn in the last 24h &bull;
+      </div>
+     </section>
+     <section class="panel" id="finalReviews">
+      <div class="live-heading">
+       <span>
+        ⭐ User Reviews
+       </span>
+       <span class="cyan" style="font-size:14px">
+        ● LIVE
+       </span>
+      </div>
+      <div id="finalReviewList">
+      </div>
+      <div class="green-card">
+       💸 $20 060 withdrawn in the last 24h &bull;
+      </div>
+      <div class="faq">
+       <details>
+        <summary>
+         Is this program real?
+        </summary>
+        <p class="muted">
+         Yes, eligible users can complete video evaluations and claim rewards.
+        </p>
+       </details>
+       <details>
+        <summary>
+         How long does withdrawal take?
+        </summary>
+        <p class="muted">
+         Processing depends on the selected payment method.
+        </p>
+       </details>
+       <details>
+        <summary>
+         What methods are accepted?
+        </summary>
+        <p class="muted">
+         PayPal, CashApp, Zelle and bank transfer.
+        </p>
+       </details>
+      </div>
+     </section>
+    </div>
+   </div>
+  </main>
+  <div class="modal" id="rewardModal">
+   <div class="modal-card">
+    <div class="modal-icon">
+     🎉
+    </div>
+    <h2 class="modal-title">
+     Coins earned!
+    </h2>
+    <p class="muted">
+     You received:
+    </p>
+    <div class="modal-sum">
+     <span class="coin">
+      T
+     </span>
+     +
+     <span id="modalReward">
+      89
+     </span>
+    </div>
+    <p class="muted">
+     $
+     <span id="modalCash">
+      89.00
+     </span>
+     added to your balance
+    </p>
+    <button class="btn" id="nextVideo">
+     Next video &rarr;
+    </button>
+   </div>
+  </div>
+  <div aria-live="polite" class="withdraw-toast" id="withdrawToast">
+  </div>
+  <script src="./script.js">
+  </script>
+ </body>
 </html>
