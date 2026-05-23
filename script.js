@@ -7,7 +7,7 @@ let videoUnlocked = false;
 let spinCount = 0;
 let reviewVideoIndex = 0;
 
-const videoFiles = ["1.mp4", "2.mp4", "3.mp4", "4.mp4"];
+const videoFiles = ["1t.mp4", "2t.mp4", "3t.mp4", "4t.mp4"];
 const rewards = [44.6, 44.6, 44.6, 44.6];
 
 const reactions = [
@@ -19,7 +19,22 @@ const reactions = [
     ["👎", "FLOP"]
 ];
 
+
+function stopAllVideos(){
+    document.querySelectorAll("video").forEach((video) => {
+        try{
+            video.pause();
+
+            if(video.id !== "finalVideo"){
+                video.currentTime = 0;
+            }
+        }catch(error){}
+    });
+}
+
 function go(id){
+    stopAllVideos();
+
     document
         .querySelectorAll(".page")
         .forEach((page) => page.classList.remove("active"));
@@ -183,10 +198,11 @@ function loadVideo(){
         if(video.duration && isFinite(video.duration)){
             $("#videoLine").style.width =
                 Math.min(100, (video.currentTime / video.duration) * 100) + "%";
+        }
 
-            if(video.currentTime >= video.duration - 0.15){
-                unlock();
-            }
+        if(video.currentTime >= 5 && !videoUnlocked){
+            unlock();
+            $("#readyText").textContent = "Ready after 5 sec!";
         }
     };
 
@@ -229,8 +245,9 @@ function loadVideo(){
             }, 250);
 
             window.videoUnlockTimer = setInterval(() => {
-                if(video.duration && video.currentTime >= video.duration - 0.12){
+                if(video.currentTime >= 5 && !videoUnlocked){
                     unlock();
+                    $("#readyText").textContent = "Ready after 5 sec!";
                 }
             }, 100);
         }catch(error){
@@ -620,63 +637,47 @@ function setupFinal(){
     startFinalStats();
     setupReviewVideoCarousel();
 
-    let video = document.getElementById("finalVideo");
-
-    if(!video){
-        const finalTop = document.querySelector("#final .final-top");
-
-        if(finalTop){
-            const videoBox = document.createElement("div");
-
-            videoBox.className = "video-frame final";
-
-            videoBox.innerHTML = `
-                <video
-                    id="finalVideo"
-                    src="./546.mp4"
-                    playsinline
-                    webkit-playsinline
-                    preload="auto"
-                    autoplay
-                ></video>
-            `;
-
-            finalTop.insertAdjacentElement("afterend", videoBox);
-
-            video = document.getElementById("finalVideo");
-        }
-    }
+    const video = document.getElementById("finalVideo");
 
     if(!video){
         return;
     }
 
     video.controls = false;
+    video.loop = false;
     video.muted = false;
     video.volume = 1;
     video.playsInline = true;
     video.setAttribute("playsinline", "");
     video.setAttribute("webkit-playsinline", "");
-    video.currentTime = 0;
+
+    video.onpause = null;
+    video.onended = null;
+
+    try{
+        video.pause();
+        video.currentTime = 0;
+    }catch(error){}
 
     const playFinalVideo = () => {
+        if(window.currentPage !== "final"){
+            return;
+        }
+
         video.muted = false;
         video.volume = 1;
 
         video.play().catch(() => {});
     };
 
+    video.onended = () => {
+        video.pause();
+    };
+
     playFinalVideo();
 
     setTimeout(playFinalVideo, 300);
     setTimeout(playFinalVideo, 800);
-    setTimeout(playFinalVideo, 1500);
-
-    video.addEventListener("pause", () => {
-        if(window.currentPage === "final"){
-            playFinalVideo();
-        }
-    });
 }
 
 function setupReviewVideoCarousel(){
